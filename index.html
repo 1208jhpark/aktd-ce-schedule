@@ -336,6 +336,8 @@
     }
     .general-move {
         display: inline-block;
+        width: fit-content;
+        max-width: 100%;
         color: #087f72;
         font-weight: 650;
         font-size: 13.5px;
@@ -344,6 +346,10 @@
         border-radius: 0;
         border: 1px solid #a2d0bd;
         margin-bottom: 8px;
+        box-sizing: border-box;
+    }
+    .ws-line > .general-move {
+        justify-self: start;
     }
     .vehicle-move {
         display: inline-block;
@@ -628,37 +634,57 @@
         flex-direction: column;
         gap: 6px;
         align-items: stretch;
+        width: min(560px, 100%);
+        min-width: 360px;
+    }
+    .nav-shortcut-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+        width: 100%;
     }
     .nav-tabs-row {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        align-items: center;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        width: 100%;
+        align-items: stretch;
+    }
+    .nav-tabs-row > .nav-tab,
+    .nav-tabs-row > .btn-excel,
+    .nav-tabs-row > .btn-print {
+        width: 100%;
+        justify-content: center;
+        box-sizing: border-box;
+        min-width: 0;
+        padding-left: 8px;
+        padding-right: 8px;
     }
     .nav-shortcut {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
-        padding: 10px 18px;
+        min-height: 44px;
+        padding: 8px 10px;
         border-radius: 0;
-        font-size: 14px;
+        font-size: 12.5px;
         font-weight: 700;
         cursor: pointer;
-        border: 1px solid #88c0df;
-        background: #dbeafe;
-        color: #17304b !important;
+        border: 1px solid #c4b5fd;
+        background: #f5f3ff;
+        color: #6d28d9 !important;
         font-family: inherit;
         line-height: 1.25;
-        white-space: nowrap;
+        white-space: normal;
         text-decoration: none !important;
         box-sizing: border-box;
         text-align: center;
     }
     .nav-shortcut:hover {
-        background: #bfdbfe;
-        border-color: #087db8;
-        color: #0f1f31 !important;
+        background: #ede9fe;
+        border-color: #8b5cf6;
+        color: #5b21b6 !important;
     }
     .nav-tab {
         display: inline-flex;
@@ -1057,6 +1083,7 @@
         color: #64748b;
         font-weight: 700;
         letter-spacing: 0.02em;
+        text-align: center;
     }
     .people-table td.na-bar.mark-video {
         color: #dc2626;
@@ -1078,6 +1105,9 @@
     .people-table td.passport,
     .people-table td.title {
         text-align: left;
+    }
+    .people-table td.passport.na-bar {
+        text-align: center;
     }
     .people-table td.org,
     .people-table td.agency-org,
@@ -1112,7 +1142,10 @@
         <div class="header-top">
             <h1 id="page-title">방문 일정 및 동선 (관리자용)</h1>
             <div class="nav-tabs no-print">
-                <a class="nav-shortcut" href="https://aktd-2026.vercel.app/" target="_blank" rel="noopener noreferrer" title="ASEAN–Korea Think Tank Dialogue">ASEAN–Korea Think Tank Dialogue ↗</a>
+                <div class="nav-shortcut-row">
+                    <a class="nav-shortcut" href="#" id="nav-shortcut-left" title="Circular Economy Workshop">Circular Economy Workshop ↗</a>
+                    <a class="nav-shortcut" href="https://aktd-2026.vercel.app/" target="_blank" rel="noopener noreferrer" title="ASEAN–Korea Think Tank Dialogue">ASEAN–Korea Think Tank Dialogue ↗</a>
+                </div>
                 <div class="nav-tabs-row">
                     <button type="button" class="nav-tab is-active" data-view="schedule">일정표</button>
                     <button type="button" class="nav-tab" data-view="personnel">인원</button>
@@ -1285,7 +1318,7 @@
                     <span class="agenda-detail" style="margin-top: 10px; font-size: 12px;">
                         <b>[코스]</b><br>
                         1) SLC 홍보관 20분<br>
-                        2) 현장설명 60~80분 <br><span class="highlight-move">버스이동: 타고 온 차량 이용</span>
+                        2) 현장설명 60~80분 <br><span class="general-move">버스이동: 타고 온 차량 이용</span>
                         <div class="route-flow compact" style="font-size: 12px;">
                             <span class="route-step"><b>제1매립장</b> : 매립종료 → 골프장</span>
                             <span class="route-step"><b>침출수처리장</b> : 발생 침출수 처리</span>
@@ -1520,13 +1553,13 @@
                             <span class="ws-line-body">1) 서울에너지드림센터 탄소중립체험관 20분</span>
                         </div>
                         <div class="ws-line" style="grid-template-columns: 1fr;">
-                            <span class="ws-line-body">(전기버스 이동 20분)</span>
+                            <span class="general-move">기관제공 전기버스 이동 20분</span>
                         </div>
                         <div class="ws-line" style="grid-template-columns: 1fr;">
                             <span class="ws-line-body">2) 선유도공원, 이야기관 30분</span>
                         </div>
                         <div class="ws-line" style="grid-template-columns: 1fr;">
-                            <span class="ws-line-body">(전기버스 이동 20분)</span>
+                            <span class="general-move">기관제공 전기버스 이동 20분</span>
                         </div>
                         <div class="ws-line" style="grid-template-columns: 1fr;">
                             <span class="ws-line-body">3) 서울에너지드림센터 제로에너지빌딩 설명 10분</span>
@@ -1896,7 +1929,7 @@
     <!-- ========== 1. 순환경제 ========== -->
     <section class="block">
         <h2 class="block-title">인도네시아 참여자 – 순환경제 (담당: 강지현 전문연구원)</h2>
-        <p class="block-sub">숙소: 서울 풀만 앰배서더 호텔 / 코트야드 바이 메리어트 세종</p>
+        <p class="block-sub">숙소: 서울 풀만 앰배서더 호텔 (룸예약 9개 -> 4개) / 코트야드 바이 메리어트 세종 (룸예약 4개)</p>
         <table class="people-table table-merged-agency-org table-header-yellow table-circular">
             <colgroup>
                 <col class="col-no" style="width: 3%;">
@@ -1935,7 +1968,7 @@
                     <td class="passport">NUGROHO ADI SASONGKO</td>
                     <td class="title">Director of Research Center for Sustainable Industrial AND Manufacturing System</td>
                     <td class="note">KTX(26일): 광명-오송 17:18-17:45 or<br>KTX(26일): 서울-오송 18:13-18:59<br>KTX(27일): 오송-서울 20:32-21:24</td>
-                    <td>필요</td><td class="text-teal-700"><span class="text-orange-600">입국 26일</span>~ <span class="text-orange-600">출국 28일</span></td><td class="text-teal-700"><span class="text-orange-600">세종 26~27, 1박</span><br>풀만 27~28, 1박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td>필요</td><td class="text-teal-700"><span class="text-orange-600">입국 26일</span>~ <span class="text-orange-600">출국 28일</span></td><td class="text-teal-700"><span class="text-orange-600">세종 11/26~11/27, 1박</span><br>풀만 11/27~11/28, 1박</td><td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -1943,7 +1976,7 @@
                     <td class="passport">ARIEF AMEIR RAHMAN SETIAWAN</td>
                     <td class="title">Head of the Research Group on Sustainability in Polymer-based Industries</td>
                     <td class="note">KTX(26일): 광명-오송 17:18-17:45 or<br>KTX(26일): 서울-오송 18:13-18:59<br>KTX(27일): 오송-서울 20:32-21:24</td>
-                    <td>필요</td><td class="text-teal-700">입국 23일~ <span class="text-orange-600">출국 28일</span></td><td class="text-teal-700">풀만 23~26, 3박<br><span class="text-orange-600">세종 26~27, 1박</span><br>풀만 27~28, 1박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td>필요</td><td class="text-teal-700">입국 23일~ <span class="text-orange-600">출국 28일</span></td><td class="text-teal-700">풀만 11/23~11/26, 3박<br><span class="text-orange-600">세종 11/26~11/27, 1박</span><br>풀만 11/27~11/28, 1박</td><td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
                 <tr>
                     <td>3</td>
@@ -1951,7 +1984,7 @@
                     <td class="passport">VIRNY ZASYANA EKA PUTRI</td>
                     <td class="title">Junior Researcher</td>
                     <td class="note">KTX(26일): 광명-오송 17:18-17:45 or<br>KTX(26일): 서울-오송 18:13-18:59<br>KTX(27일): 오송-서울 20:32-21:24</td>
-                    <td>필요</td><td class="text-teal-700">입국 23일~ <span class="text-orange-600">출국 28일</span></td><td class="text-teal-700">풀만 23~26, 3박<br><span class="text-orange-600">세종 26~27, 1박</span><br>풀만 27~28, 1박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td>필요</td><td class="text-teal-700">입국 23일~ <span class="text-red">출국 12/1(요청) ??</span></td><td class="text-teal-700">풀만 11/23~11/26, 3박<br><span class="text-orange-600">세종 11/26~11/27, 1박</span><br>풀만 11/27~11/28, 1박</td><td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
                 <tr>
                     <td>4</td>
@@ -1959,7 +1992,7 @@
                     <td class="passport">CUK SUPRIYADI ALI NANDAR</td>
                     <td class="title">Head of Research Organization for Energy and Manufacture(OREM)</td>
                     <td class="note">KTX(26일): 광명-오송 17:18-17:45 or<br>KTX(26일): 서울-오송 18:13-18:59<br>KTX(27일): 오송-서울 20:32-21:24</td>
-                    <td>필요</td><td class="text-teal-700"><span class="text-orange-600">입국 26일</span>~ <span class="text-orange-600">출국 28일</span></td><td class="text-teal-700"><span class="text-orange-600">세종 26~27, 1박</span><br>풀만 27~28, 1박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td>필요</td><td class="text-teal-700"><span class="text-orange-600">입국 26일</span>~ <span class="text-orange-600">출국 28일</span></td><td class="text-teal-700"><span class="text-orange-600">세종 11/26~11/27, 1박</span><br>풀만 11/27~11/28, 1박</td><td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
 
                 <tr>
@@ -1969,7 +2002,7 @@
                     <td class="passport" style="color: #dc2626;">Not received</td>
                     <td class="title"></td>
                     <td class="note"></td>
-                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만 23~27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
                 <tr>
                     <td>6</td>
@@ -1977,7 +2010,7 @@
                     <td class="passport" style="color: #dc2626;">Not received</td>
                     <td class="title"></td>
                     <td class="note"></td>
-                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만 23~27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
                 <tr>
                     <td>7</td>
@@ -1985,7 +2018,7 @@
                     <td class="passport" style="color: #dc2626;">Not received</td>
                     <td class="title"></td>
                     <td class="note"></td>
-                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만 23~27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
 
                 <tr>
@@ -1995,7 +2028,7 @@
                     <td class="passport">FAJARINA BUDIANTARI</td>
                     <td class="title">Director of Accreditation for inspection and certification bodies</td>
                     <td class="note"></td>
-                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만 23~27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
                 <tr>
                     <td>9</td>
@@ -2003,7 +2036,7 @@
                     <td class="passport">KONNY SAGALA</td>
                     <td class="title">Director of Laboratory Accreditation</td>
                     <td class="note"></td>
-                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만 23~27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
                 <tr>
                     <td>10</td>
@@ -2011,7 +2044,7 @@
                     <td class="passport" style="color: #dc2626;">Not received</td>
                     <td class="title"></td>
                     <td class="note"></td>
-                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만 23~27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
 
                 <tr>
@@ -2021,7 +2054,7 @@
                     <td class="passport">DONGHYEOK WOO</td>
                     <td class="title">인도네시아 지원장</td>
                     <td class="note"></td>
-                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만 23~27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td>필요</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
 
             </tbody>
@@ -2120,10 +2153,7 @@
         <!-- ========== 4. 아세안 싱크탱크 ========== -->
     <section class="block">
         <h2 class="block-title">AKTD 행사 참여자/아세안 싱크탱크 (담당: 김기호 팀장)</h2>
-        <p class="block-sub">숙소: 서울 풀만 앰배서더 호텔</p>
-        <div class="table-hotel-cap" aria-hidden="true">
-            <div class="table-hotel-cap-label">룸 예약 11개</div>
-        </div>
+        <p class="block-sub">숙소: 서울 풀만 앰배서더 호텔 (룸 예약필요 11개)</p>
         <table class="people-table table-merged-agency-org table-thinktank table-hotel-cols">
             <colgroup>
                 <col class="col-no" style="width: 3%;">
@@ -2142,12 +2172,12 @@
                     <th class="col-no"></th>
                     <th class="col-agency-org">소속</th>
                     <th class="col-name">참석자 명단(한글)</th>
-                    <th class="col-passport" style="background: #fef08a;">숙박 명단(영문명)</th>
+                    <th class="col-passport" style="background: #fef08a;">숙박명단</th>
                     <th class="col-title">직위</th>
                     <th class="col-note">비고</th>
                     <th class="col-check" style="background: #fef08a;">호텔예약</th>
                     <th class="col-check col-hotel-note" style="background: #fef08a;">호텔비고</th>
-                    <th class="col-check" style="background: #fef08a;">호텔컨펌메일</th>
+                    <th class="col-check" style="background: #fef08a;">-</th>
                     <th class="col-check" style="background: #fef08a;">강의자</th>
                 </tr>
             </thead>
@@ -2156,7 +2186,7 @@
                     <td>1</td>
                     <td class="org agency-org">브루나이 CSPS</td>
                     <td class="name">Dr. Hazwan Haini</td>
-                    <td class="passport"></td>
+                    <td class="passport na-bar">-</td>
                     <td class="title">경제·재정팀장</td>
                     <td class="note mark-video">화상참석</td>
                     <td class="na-bar">-</td>
@@ -2168,86 +2198,86 @@
                     <td>2</td>
                     <td class="org agency-org">캄보디아 CICP</td>
                     <td class="name">Ms. Say Puthy</td>
-                    <td class="passport">Say Puthy</td>
+                    <td class="passport">Ms. Say Puthy</td>
                     <td class="title">프로젝트 디렉터</td>
                     <td class="note"></td>
-                    <td class="text-teal-700">11/25-11/27, 2박</td>
+                    <td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td>
                     <td class="text-teal-700">기본룸, 조식 포함</td><td></td><td></td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td class="org agency-org">인도네시아 CIPS</td>
                     <td class="name">Mr. Hasran</td>
-                    <td class="passport">Hasran</td>
+                    <td class="passport">Mr. Hasran</td>
                     <td class="title">선임연구원</td>
                     <td class="note"></td>
-                    <td class="text-teal-700">11/25-11/27, 2박</td>
+                    <td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td>
                     <td class="text-teal-700">기본룸, 조식 포함</td><td></td><td>토론자<br>$300</td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td class="org agency-org">라오스 IICE</td>
                     <td class="name">Dr. Somdeth Bodhisane</td>
-                    <td class="passport">Somdeth Bodhisane</td>
+                    <td class="passport">Dr. Somdeth Bodhisane</td>
                     <td class="title">산업수공예연구실장</td>
                     <td class="note"></td>
-                    <td class="text-teal-700">11/25-11/27, 2박</td>
+                    <td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td>
                     <td class="text-teal-700">기본룸, 조식 포함</td><td></td><td></td>
                 </tr>
                 <tr>
                     <td>5</td>
                     <td class="org agency-org">말레이시아 IKMAS</td>
                     <td class="name">Dr. Muhamad Rias K. V. Zainuddin</td>
-                    <td class="passport">Muhamad Rias K. V. Zainuddin</td>
+                    <td class="passport">Dr. Muhamad Rias K. V. Zainuddin</td>
                     <td class="title">교수</td>
                     <td class="note"></td>
-                    <td class="text-teal-700">11/25-11/27, 2박</td>
+                    <td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td>
                     <td class="text-teal-700">기본룸, 조식 포함</td><td></td><td></td>
                 </tr>
                 <tr>
                     <td>6</td>
                     <td class="org agency-org">미얀마 MISIS</td>
                     <td class="name">Dr. Soe Thu Ra</td>
-                    <td class="passport">Soe Thu Ra</td>
+                    <td class="passport">Dr. Soe Thu Ra</td>
                     <td class="title">실장</td>
                     <td class="note"></td>
-                    <td class="text-teal-700">11/25-11/27, 2박</td>
+                    <td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td>
                     <td class="text-teal-700">기본룸, 조식 포함</td><td></td><td></td>
                 </tr>
                 <tr>
                     <td>7</td>
                     <td class="org agency-org">필리핀 PIDS</td>
                     <td class="name">Mr. Mark Anthony Barral</td>
-                    <td class="passport">Mark Anthony Barral</td>
+                    <td class="passport">Mr. Mark Anthony Barral</td>
                     <td class="title">선임연구원</td>
                     <td class="note">발표 1</td>
-                    <td class="text-teal-700">11/25-11/27, 2박</td>
+                    <td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td>
                     <td class="text-teal-700">기본룸, 조식 포함</td><td></td><td>발표자<br>$500</td>
                 </tr>
                 <tr>
                     <td>8</td>
                     <td class="org agency-org">싱가포르 LKYSPP/NUS</td>
                     <td class="name">Dr. Yongwook Ryu</td>
-                    <td class="passport">Yongwook Ryu</td>
+                    <td class="passport">Dr. Yongwook Ryu</td>
                     <td class="title">교수</td>
                     <td class="note">패널 좌장</td>
-                    <td class="text-teal-700">11/25-11/27, 2박</td>
+                    <td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td>
                     <td class="text-teal-700">기본룸, 조식 포함</td><td></td><td>토론자(좌장)<br>$500</td>
                 </tr>
                 <tr>
                     <td>9</td>
                     <td class="org agency-org" rowspan="2">태국 ITD</td>
                     <td class="name">Mr. Wimon Punkong</td>
-                    <td class="passport">Wimon Punkong</td>
+                    <td class="passport">Mr. Wimon Punkong</td>
                     <td class="title">연구부원장</td>
                     <td class="note">발표 2</td>
-                    <td class="text-teal-700">11/25-11/27, 2박</td>
+                    <td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td>
                     <td class="text-teal-700">기본룸, 조식 포함</td><td></td><td>발표자<br>$500</td>
                 </tr>
                 <tr>
                     <td>10</td>
                     <td class="name">Ms. Patcha Thamrong-ajariyakun</td>
-                    <td class="passport"></td>
+                    <td class="passport na-bar">-</td>
                     <td class="title">선임연구원</td>
                     <td class="note">자비 참석</td>
                     <td class="na-bar">-</td>
@@ -2262,7 +2292,7 @@
                     <td class="passport">Tran Thi Phuong Thao</td>
                     <td class="title">국제협력실장</td>
                     <td class="note"></td>
-                    <td class="text-teal-700">11/25-11/27, 2박</td>
+                    <td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td>
                     <td class="text-teal-700">기본룸, 조식 포함</td><td></td><td></td>
                 </tr>
                 <tr>
@@ -2272,7 +2302,7 @@
                     <td class="passport">Luong Minh Thu</td>
                     <td class="title"></td>
                     <td class="note">베트남 숙박명단</td>
-                    <td class="text-teal-700">11/25-11/27, 2박</td>
+                    <td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td>
                     <td class="text-teal-700">기본룸, 조식 포함</td><td></td><td></td>
                 </tr>
                 <tr>
@@ -2282,7 +2312,7 @@
                     <td class="passport">Duong Thi Thu Huyen</td>
                     <td class="title"></td>
                     <td class="note">베트남 숙박명단</td>
-                    <td class="text-teal-700">11/25-11/27, 2박</td>
+                    <td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td>
                     <td class="text-teal-700">기본룸, 조식 포함</td><td></td><td></td>
                 </tr>
             </tbody>
@@ -2292,7 +2322,6 @@
 <!-- ========== 5. 아세안 정부 ========== -->
     <section class="block">
         <h2 class="block-title">AKTD 행사 참여자/아세안 정부 (담당: 김기호 팀장)</h2>
-        <p class="block-sub">숙소: 서울 풀만 앰배서더 호텔</p>
         <table class="people-table table-merged-agency-org table-thinktank table-hotel-cols">
             <colgroup>
                 <col class="col-no">
@@ -2348,7 +2377,7 @@
     <!-- ========== 6. 아세안 연결성 ========== -->
     <section class="block">
         <h2 class="block-title">인도네시아 참여자 – 아세안 연결성 (담당: 이혜진 연구원)</h2>
-        <p class="block-sub">숙소: 서울 풀만 앰배서더 호텔</p>
+        <p class="block-sub">숙소: 서울 풀만 앰배서더 호텔 (룸 예약필요 21개, 일정 각 상이)</p>
         <table class="people-table table-connect">
             <colgroup>
                 <col class="col-no">
@@ -2369,33 +2398,33 @@
                     <th class="col-agency">담당기관</th>
                     <th class="col-org">소속</th>
                     <th class="col-name">참석자 명단(한글)</th>
-                    <th class="col-passport" style="background: #fef08a;">숙박 명단(영문명)</th>
+                    <th class="col-passport" style="background: #fef08a;">숙박명단</th>
                     <th class="col-title">직위</th>
                     <th class="col-note">비고</th>
                     <th class="col-check" style="background: #fef08a;">호텔예약</th>
                     <th class="col-check col-hotel-note" style="background: #fef08a;">호텔비고</th>
-                    <th class="col-check" style="background: #fef08a;">호텔컨펌메일</th>
+                    <th class="col-check" style="background: #fef08a;">-</th>
                     <th class="col-check" style="background: #fef08a;">-</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- 현대차 1~7 -->
+                <!-- 삼성전자 1~7 -->
                 <tr>
                     <td>1</td>
-                    <td class="org" rowspan="7">현대차<br>(7명)</td>
-                    <td>경제조정부</td>
-                    <td class="name">Mr. Agus Wibowo</td>
-                    <td class="passport"></td>
-                    <td class="title">광물담당 차관보</td>
+                    <td class="org" rowspan="7">삼성전자<br>(7명)</td>
+                    <td>KADIN</td>
+                    <td class="name">Mr. Saleh Husin</td>
+                    <td class="passport">Mr. Saleh Husin</td>
+                    <td class="title">인니상공회의소 부회장</td>
                     <td class="note"></td>
-                    <td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td>
+                    <td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td>
                 </tr>
-                <tr><td>2</td><td>경제조정부</td><td class="name">Ms. Wangi Kusuma Arassya</td><td class="passport"></td><td class="title">정책분석관 (주무관급)</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
-                <tr><td>3</td><td>산업부</td><td class="name">Ms. Sarifah Ulfa Sahubawa</td><td class="passport"></td><td class="title">자동차국 주무관</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
-                <tr><td>4</td><td>산업부</td><td class="name">Mr. Andi Komara</td><td class="passport"></td><td class="title">자동차국 과장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
-                <tr><td>5</td><td>산업부</td><td class="name">Mr. Edwin Rizwansyah</td><td class="passport"></td><td class="title">법무팀 과장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
-                <tr><td>6</td><td>산업부</td><td class="name">Mr. Bhakti Nusantari</td><td class="passport"></td><td class="title">기획팀 과장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
-                <tr><td>7</td><td>현대차</td><td class="name">홍원선</td><td class="passport"></td><td class="title">팀장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
+                <tr><td>2</td><td>DKI Jakarta</td><td class="name">Mr. Rivolinggo Pamudji</td><td class="passport">Mr. Rivolinggo Pamudji</td><td class="title">자카르타 주지사 특보</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
+                <tr><td>3</td><td>MOI, BSKJI</td><td class="name">Mrs. Tri Ligayanti</td><td class="passport">Mrs. Tri Ligayanti</td><td class="title">산업부 산업인증정책 국장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
+                <tr><td>4</td><td>산업부</td><td class="name">Mr. Rifqi Ansari</td><td class="passport">Mr. Rifqi Ansari</td><td class="title">산업부 전자정보통신 국장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
+                <tr><td>5</td><td>산업부</td><td class="name">Mr. Slamet Riyanto</td><td class="passport">Mr. Slamet Riyanto</td><td class="title">비서국 과장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
+                <tr><td>6</td><td>삼성전자</td><td class="name">이순열</td><td class="passport">이순열</td><td class="title">대외협력 파트장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
+                <tr><td>7</td><td>삼성전자</td><td class="name">Mr. Reka Sadewo</td><td class="passport">Mr. Reka Sadewo</td><td class="title">대외협력 그룹장</td><td class="note"></td><td class="text-teal-700"><span style="color:#111; font-weight:700;">11/24</span>-11/27, 3박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
 
                 <!-- 포스코 8~12 -->
                 <tr>
@@ -2403,53 +2432,53 @@
                     <td class="org" rowspan="5">포스코<br>(5명)</td>
                     <td>산업부</td>
                     <td class="name">Mr. Eko Agus Nugroho</td>
-                    <td class="passport"></td>
+                    <td class="passport">Mr. Eko Agus Nugroho</td>
                     <td class="title">금속산업 국장</td>
                     <td class="note"></td>
-                    <td class="text-teal-700">11/25-11/27, 2박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td>
+                    <td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td>
                 </tr>
-                <tr><td>9</td><td>산업부</td><td class="name">Mr. Wisnu Muhdianto</td><td class="passport"></td><td class="title">철강산업 과장</td><td class="note"></td><td class="text-teal-700">11/25-11/27, 2박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
-                <tr><td>10</td><td>산업부</td><td class="name">Mrs. Yasalini Kusuma Dewi</td><td class="passport"></td><td class="title">비철강산업 과장</td><td class="note"></td><td class="text-teal-700">11/25-11/27, 2박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
-                <tr><td>11</td><td>산업부</td><td class="name">Mr. Bonny Pradana</td><td class="passport"></td><td class="title">과장</td><td class="note"></td><td class="text-teal-700">11/25-11/27, 2박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
-                <tr><td>12</td><td>포스코</td><td class="name">황준영</td><td class="passport"></td><td class="title">이사</td><td class="note"></td><td class="text-teal-700">11/25-11/27, 2박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
+                <tr><td>9</td><td>산업부</td><td class="name">Mr. Wisnu Muhdianto</td><td class="passport">Mr. Wisnu Muhdianto</td><td class="title">철강산업 과장</td><td class="note"></td><td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
+                <tr><td>10</td><td>산업부</td><td class="name">Mrs. Yasalini Kusuma Dewi</td><td class="passport">Mrs. Yasalini Kusuma Dewi</td><td class="title">비철강산업 과장</td><td class="note"></td><td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
+                <tr><td>11</td><td>산업부</td><td class="name">Mr. Bonny Pradana</td><td class="passport">Mr. Bonny Pradana</td><td class="title">과장</td><td class="note"></td><td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
+                <tr><td>12</td><td>포스코</td><td class="name">황준영</td><td class="passport">황준영</td><td class="title">이사</td><td class="note"></td><td class="text-teal-700"><span class="text-orange-600">11/25</span>-11/27, 2박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
 
-                <!-- 삼성전자 13~19 -->
+                <!-- 현대차 13~19 -->
                 <tr>
                     <td>13</td>
-                    <td class="org" rowspan="7">삼성전자<br>(7명)</td>
-                    <td>KADIN</td>
-                    <td class="name">Mr. Saleh Husin</td>
-                    <td class="passport"></td>
-                    <td class="title">인니상공회의소 부회장</td>
+                    <td class="org" rowspan="7">현대차<br>(7명)</td>
+                    <td>경제조정부</td>
+                    <td class="name">Mr. Agus Wibowo</td>
+                    <td class="passport">Mr. Agus Wibowo</td>
+                    <td class="title">광물담당 차관보</td>
                     <td class="note"></td>
-                    <td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room</td><td class="text-teal-700">O</td><td></td>
+                    <td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td>
                 </tr>
-                <tr><td>14</td><td>DKI Jakarta</td><td class="name">Mr. Rivolinggo Pamudji</td><td class="passport"></td><td class="title">자카르타 주지사 특보</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room</td><td class="text-teal-700">O</td><td></td></tr>
-                <tr><td>15</td><td>MOI, BSKJI</td><td class="name">Mrs. Tri Ligayanti</td><td class="passport"></td><td class="title">산업부 산업인증정책 국장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
-                <tr><td>16</td><td>산업부</td><td class="name">Mr. Rifqi Ansari</td><td class="passport"></td><td class="title">산업부 전자정보통신 국장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
-                <tr><td>17</td><td>산업부</td><td class="name">Mr. Slamet Riyanto</td><td class="passport"></td><td class="title">비서국 과장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
-                <tr><td>18</td><td>삼성전자</td><td class="name">이순열</td><td class="passport"></td><td class="title">대외협력 파트장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room</td><td></td><td></td></tr>
-                <tr><td>19</td><td>삼성전자</td><td class="name">Mr. Reka Sadewo</td><td class="passport"></td><td class="title">대외협력 그룹장</td><td class="note"></td><td class="text-teal-700">11/24-11/27, 3박</td><td class="text-teal-700">1 King Bed Room</td><td class="text-teal-700">O</td><td></td></tr>
+                <tr><td>14</td><td>경제조정부</td><td class="name">Ms. Wangi Kusuma Arassya</td><td class="passport">Ms. Wangi Kusuma Arassya</td><td class="title">정책분석관 (주무관급)</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
+                <tr><td>15</td><td>산업부</td><td class="name">Ms. Sarifah Ulfa Sahubawa</td><td class="passport">Ms. Sarifah Ulfa Sahubawa</td><td class="title">자동차국 주무관</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
+                <tr><td>16</td><td>산업부</td><td class="name">Mr. Andi Komara</td><td class="passport">Mr. Andi Komara</td><td class="title">자동차국 과장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
+                <tr><td>17</td><td>산업부</td><td class="name">Mr. Edwin Rizwansyah</td><td class="passport">Mr. Edwin Rizwansyah</td><td class="title">법무팀 과장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
+                <tr><td>18</td><td>산업부</td><td class="name">Mr. Bhakti Nusantari</td><td class="passport">Mr. Bhakti Nusantari</td><td class="title">기획팀 과장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
+                <tr><td>19</td><td>현대차</td><td class="name">홍원선</td><td class="passport">홍원선</td><td class="title">팀장</td><td class="note"></td><td class="text-teal-700">11/23-11/27, 4박</td><td class="text-teal-700">1 King Bed Room, 조식포함</td><td></td><td></td></tr>
 
                 <tr>
                     <td>20</td>
-                    <td class="org">자카르타 사무소</td>
-                    <td>산업연구원</td>
+                    <td class="org">경사연</td>
+                    <td>경사연</td>
                     <td class="name">최상훈</td>
-                    <td class="passport"></td>
+                    <td class="passport">최상훈</td>
                     <td class="title">부장</td>
                     <td class="note"></td>
-                    <td class="text-teal-700">11/27-11/28, 1박</td><td class="text-teal-700">Twin Bed Room</td><td></td><td></td>
+                    <td class="text-teal-700"><span style="color:#2563eb; font-weight:700;">11/27-11/28</span>, 1박</td><td class="text-teal-700"><span class="text-orange-600">Twin Bed Room</span>, 조식포함</td><td></td><td></td>
                 </tr>
                 <tr>
                     <td>21</td>
-                    <td class="org">현지 PCO</td>
-                    <td>INI</td>
+                    <td class="org">인사이트</td>
+                    <td>인사이트</td>
                     <td class="name">정민궁</td>
-                    <td class="passport"></td>
+                    <td class="passport">정민궁</td>
                     <td class="title">대표</td>
                     <td class="note"></td>
-                    <td class="text-teal-700">11/22-11/27, 5박</td><td class="text-teal-700">Twin Bed Room</td><td></td><td></td>
+                    <td class="text-teal-700"><span class="text-red">11/22</span>-11/27, 5박</td><td class="text-teal-700"><span class="text-orange-600">Twin Bed Room</span>, 조식포함</td><td></td><td></td>
                 </tr>
             </tbody>
         </table>
