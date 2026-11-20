@@ -3733,9 +3733,8 @@
       alert('엑셀 라이브러리를 불러오지 못했습니다. 인터넷 연결 후 다시 시도해 주세요.');
       return;
     }
-    var view = (views.badges && views.badges.classList.contains('is-active'))
-      ? views.badges
-      : document.getElementById('view-personnel');
+    var isBadges = !!(views.badges && views.badges.classList.contains('is-active'));
+    var view = isBadges ? views.badges : document.getElementById('view-personnel');
     if (!view) {
       alert('인원관리 화면을 찾지 못했습니다.');
       return;
@@ -3767,11 +3766,31 @@
       };
     }
 
+    function badgeHeaderFill(table) {
+      if (!table) return 'FFFEF08A';
+      if (table.classList.contains('table-header-mint')) return 'FFA7F3D0';
+      if (table.classList.contains('table-header-peach')) return 'FFFDBA74';
+      if (table.classList.contains('table-header-yellow')) return 'FFFEF08A';
+      return 'FF087DB8';
+    }
+
+    function badgeHeaderFontColor(table) {
+      if (table && (table.classList.contains('table-header-yellow')
+        || table.classList.contains('table-header-mint')
+        || table.classList.contains('table-header-peach'))) {
+        return 'FF17304B';
+      }
+      return 'FFFFFFFF';
+    }
+
     try {
       var wb = new ExcelJS.Workbook();
-      var ws = wb.addWorksheet('참여자', { views: [{ showGridLines: false }] });
-      var COLS = 10;
-      var colWidths = [5, 16, 18, 22, 18, 22, 12, 12, 14, 10];
+      var ws = wb.addWorksheet(isBadges ? '명찰인원' : '참여자', { views: [{ showGridLines: false }] });
+      // 명찰: 화면 비율(4/28/28/28/12)에 맞춘 고정 열너비 → 표마다 세로 간격 정렬
+      var COLS = isBadges ? 5 : 10;
+      var colWidths = isBadges
+        ? [5, 30, 32, 32, 16]
+        : [5, 16, 18, 22, 18, 22, 12, 12, 14, 10];
       colWidths.forEach(function (w, i) { ws.getColumn(i + 1).width = w; });
 
       var rowIdx = 1;
@@ -3787,7 +3806,7 @@
       // 제목
       ws.mergeCells(rowIdx, 1, rowIdx, COLS);
       var title = ws.getCell(rowIdx, 1);
-      title.value = '참여자';
+      title.value = isBadges ? '명찰 인원' : '참여자';
       title.font = { name: '맑은 고딕', size: 18, bold: true, color: { argb: 'FF17304B' } };
       title.alignment = { vertical: 'middle', horizontal: 'left' };
       ws.getRow(rowIdx).height = 28;
@@ -3887,35 +3906,40 @@
 
         // colspan 축소 매핑 (tableToMatrix와 동일)
         var dropCol = {};
-        var headerOrigins = [];
         occupied = {};
         Array.prototype.forEach.call(trs[0] ? trs[0].children : [], function (cell) {
           if (cell.tagName !== 'TH' && cell.tagName !== 'TD') return;
         });
-        // keepCols from parsed matrix width
         var width = matrix[0].length;
         var tableStart = rowIdx;
+        var headerFill = isBadges ? badgeHeaderFill(table) : 'FF087DB8';
+        var headerFont = isBadges ? badgeHeaderFontColor(table) : 'FFFFFFFF';
 
+        // 명찰 3열 표(2부 소속)는 1~3열만 쓰고, 5열 표와 동일 열너비를 공유해 세로 정렬
         matrix.forEach(function (row, r) {
           var excelR = tableStart + r;
           var isHeader = r === 0;
-          ws.getRow(excelR).height = isHeader ? 22 : Math.max(18, 14 + String(row.join('\n')).split('\n').length * 6);
+          var lineCount = String(row.join('\n')).split('\n').length;
+          ws.getRow(excelR).height = isHeader
+            ? 24
+            : Math.max(isBadges ? 22 : 18, 14 + lineCount * (isBadges ? 10 : 6));
           for (var c = 0; c < width; c += 1) {
             var excelC = c + 1;
             var cell = ws.getCell(excelR, excelC);
             var val = row[c] != null ? String(row[c]) : '';
             cell.value = val;
             cell.border = border;
-            cell.alignment = { vertical: 'middle', horizontal: c === 0 ? 'center' : 'left', wrapText: true };
+            cell.alignment = {
+              vertical: 'middle',
+              horizontal: c === 0 ? 'center' : 'left',
+              wrapText: true
+            };
             if (isHeader) {
-              cell.font = { name: '맑은 고딕', size: 10, bold: true, color: { argb: 'FFFFFFFF' } };
-              cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF087DB8' } };
+              cell.font = { name: '맑은 고딕', size: 10, bold: true, color: { argb: headerFont } };
+              cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: headerFill } };
               cell.alignment = { vertical: 'middle', horizontal: 'center', wrapText: true };
             } else {
               cell.font = { name: '맑은 고딕', size: 10, color: { argb: 'FF17304B' } };
-              // 이름 등 화면 색 반영
-              var domCell = null;
-              // matrix col is already collapsed; approximate via scanning row cells
             }
           }
           rowIdx += 1;
@@ -3985,7 +4009,7 @@
           } catch (e) { /* ignore overlap */ }
         });
 
-        rowIdx += 1; // 블록 간 간격
+        rowIdx += isBadges ? 2 : 1; // 명찰 표 간 간격 여유
       });
 
       return wb.xlsx.writeBuffer().then(function (buffer) {
@@ -3993,7 +4017,7 @@
         var y = stamp.getFullYear();
         var m = String(stamp.getMonth() + 1).padStart(2, '0');
         var d = String(stamp.getDate()).padStart(2, '0');
-        downloadArrayBuffer(buffer, '참여자_' + y + m + d + '.xlsx');
+        downloadArrayBuffer(buffer, (isBadges ? '명찰인원_' : '참여자_') + y + m + d + '.xlsx');
       }).catch(function (err) {
         console.error(err);
         alert('엑셀 저장에 실패했습니다. 다시 시도해 주세요.');
