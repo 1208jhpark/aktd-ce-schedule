@@ -990,25 +990,23 @@
     /* 표 안 colspan 캡션 대신 외부 그리드로 올려 열너비 왜곡 방지 */
 
     /* 연결성: 담당기관+소속 = 싱크탱크 소속(21%)과 우측 경계 정렬 */
-    /* 순환경제: 직위까지 한국표(table-thinktank)와 동일, 비고↓ → 항공비고↑ */
+    /* 순환경제: 직위까지 한국표(table-thinktank)와 동일 */
     .people-table.table-circular col.col-no,
     .people-table.table-circular .col-no { width: 3%; }
     .people-table.table-circular col.col-agency-org,
     .people-table.table-circular .col-agency-org { width: 15%; }
     .people-table.table-circular col.col-name,
-    .people-table.table-circular .col-name { width: 10%; }
+    .people-table.table-circular .col-name { width: 11%; }
     .people-table.table-circular col.col-passport,
-    .people-table.table-circular .col-passport { width: 11%; }
+    .people-table.table-circular .col-passport { width: 12%; }
     .people-table.table-circular col.col-title,
-    .people-table.table-circular .col-title { width: 11%; }
+    .people-table.table-circular .col-title { width: 12%; }
     .people-table.table-circular col.col-note,
-    .people-table.table-circular .col-note { width: 12%; }
+    .people-table.table-circular .col-note { width: 13%; }
     .people-table.table-circular col.col-check,
-    .people-table.table-circular .col-check { width: 8%; }
+    .people-table.table-circular .col-check { width: 10%; }
     .people-table.table-circular col.col-flight-book,
-    .people-table.table-circular .col-flight-book { width: 12%; }
-    .people-table.table-circular col.col-flight-note,
-    .people-table.table-circular .col-flight-note { width: 8%; }
+    .people-table.table-circular .col-flight-book { width: 14%; }
     .people-table.table-circular tbody td.col-flight-book {
         white-space: nowrap;
         font-size: 11px;
@@ -1022,10 +1020,6 @@
         white-space: normal;
         font-size: 11px;
         line-height: 1.25;
-    }
-    .people-table.table-circular th.col-flight-note,
-    .people-table.table-circular tbody td:nth-last-child(3) {
-        white-space: nowrap;
     }
     /* 인원표 데이터 행 글씨 통일 */
     .people-table tbody td {
@@ -1875,7 +1869,7 @@
                 <div class="agenda-split split-vline">
                     <div class="agenda-slot">
                         <span class="badge"><span class="plane-ico">✈</span>공항도착/출국준비</span>
-                        <span style="display:block; font-size:14px; color:#000; line-height:1.5;"><span class="sq"></span>출국정보: 11/27 15:40 OZ0761 <span class="text-red">(확정 전)</span></span>
+                        <span style="display:block; font-size:14px; color:#000; line-height:1.5;"><span class="sq"></span>출국정보: 11/27 15:40 OZ 761 <span class="text-red">(확정 전)</span></span>
                         <span class="pax-line"><span class="sq"></span>인니인원: 7명<br><span class="pax-detail">(MOI 3 · KTR 1 · BSN 3)</span></span>
                         <span style="display:block; font-size:14px; color:#000; line-height:1.5;"><span class="sq"></span>관리인원: 2명 (JM 2 + 인증원 α)</span>
                     </div>
@@ -2015,8 +2009,9 @@
         </div>
         <div class="contact-card">
             <div class="contact-card-grid">
-                <span class="contact-card-label">통역</span>
-                <p class="contact-card-person"></p>
+                <span class="contact-card-label contact-card-label-rows-2">통역</span>
+                <p class="contact-card-person">한-인니어, 23일~25일, 김동수</p>
+                <p class="contact-card-person">한-영어, 26일 오전, 손보경/최기원</p>
             </div>
         </div>
         <div class="contact-card">
@@ -2047,13 +2042,12 @@
             <colgroup>
                 <col class="col-no" style="width: 3%;">
                 <col class="col-agency-org" style="width: 15%;">
-                <col class="col-name" style="width: 10%;">
-                <col class="col-passport" style="width: 11%;">
-                <col class="col-title" style="width: 11%;">
-                <col class="col-note" style="width: 12%;">
-                <col class="col-check col-flight-book" style="width: 12%;">
-                <col class="col-check col-flight-note" style="width: 8%;">
-                <col class="col-check" style="width: 8%;">
+                <col class="col-name" style="width: 11%;">
+                <col class="col-passport" style="width: 12%;">
+                <col class="col-title" style="width: 12%;">
+                <col class="col-note" style="width: 13%;">
+                <col class="col-check col-flight-book" style="width: 14%;">
+                <col class="col-check" style="width: 10%;">
                 <col class="col-check" style="width: 10%;">
             </colgroup>
             <thead>
@@ -2065,14 +2059,13 @@
                     <th class="col-title">직위</th>
                     <th class="col-note">비고</th>
                     <th class="col-check col-flight-book">항공예약<span class="text-red">(확정 전)</span></th>
-                    <th class="col-check col-flight-note">항공비고</th>
                     <th class="col-check">호텔예약</th>
                     <th class="col-check">호텔비고/결제(인증원)</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="col-size-row" aria-hidden="true">
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
                 </tr>
                 <tr>
                     <td>1</td>
@@ -2081,7 +2074,9 @@
                     <td class="passport">ARIEF AMEIR RAHMAN SETIAWAN</td>
                     <td class="title">Head of the Research Group on Sustainability in Polymer-based Industries</td>
                     <td class="note">KTX(26일): 광명-오송 17:18-17:45 or<br><span style="color:#94a3b8;">KTX(26일): 서울-오송 18:13-18:59</span><br>KTX(27일): 오송-서울 20:32-21:24</td>
-                    <td class="col-flight-book" style="color:#000;">OZ0762: 11/22(22:30)-11/23(07:40)<br>KE5623: 11/28(15:40) ~</td><td class="text-teal-700">입국 23일~ <span class="text-orange-600">출국 28일</span></td><td class="text-teal-700">풀만 11/23~11/26, 3박<br><span class="text-orange-600">세종 11/26~11/27, 1박</span><br>풀만 11/27~11/28, 1박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td class="col-flight-book" style="color:#000;">OZ 762: 11/22(22:30)-11/23(07:40)<br>KE5623: <span class="text-orange-600">11/28</span>(15:40) ~</td>
+                    <td class="text-teal-700">풀만 11/23~11/26, 3박<br><span class="text-orange-600">세종 11/26~11/27, 1박</span><br>풀만 11/27~11/28, 1박</td>
+                    <td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -2089,7 +2084,9 @@
                     <td class="passport">VIRNY ZASYANA EKA PUTRI</td>
                     <td class="title">Junior Researcher</td>
                     <td class="note">KTX(26일): 광명-오송 17:18-17:45 or<br><span style="color:#94a3b8;">KTX(26일): 서울-오송 18:13-18:59</span><br>KTX(27일): 오송-서울 20:32-21:24</td>
-                    <td class="col-flight-book">OZ0762: 11/22(22:30)-11/23(07:40)<br><span class="text-red">??: 12/1(?) ~</span></td><td class="text-teal-700">입국 23일~ <span class="text-red">출국 12/1(요청)</span></td><td class="text-teal-700">풀만 11/23~11/26, 3박<br><span class="text-orange-600">세종 11/26~11/27, 1박</span><br>풀만 11/27~11/28, 1박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td class="col-flight-book" style="color:#000;">OZ 762: 11/22(22:30)-11/23(07:40)<br>OZ 761: <span style="color:#2563eb;">12/1(16:00)</span> ~</td>
+                    <td class="text-teal-700">풀만 11/23~11/26, 3박<br><span class="text-orange-600">세종 11/26~11/27, 1박</span><br>풀만 11/27~11/28, 1박</td>
+                    <td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
                 <tr>
                     <td>3</td>
@@ -2097,7 +2094,9 @@
                     <td class="passport">CUK SUPRIYADI ALI NANDAR</td>
                     <td class="title">Head of Research Organization for Energy and Manufacture(OREM)</td>
                     <td class="note">KTX(26일): 광명-오송 17:18-17:45 or<br><span style="color:#94a3b8;">KTX(26일): 서울-오송 18:13-18:59</span><br>KTX(27일): 오송-서울 20:32-21:24</td>
-                    <td class="col-flight-book">KE438: 11/25(18:30)-11/26(03:50)<br>KE5623: 11/28(15:40)</td><td class="text-teal-700"><span class="text-orange-600">입국 26일</span>~ <span class="text-orange-600">출국 28일</span></td><td class="text-teal-700"><span class="text-orange-600">세종 11/26~11/27, 1박</span><br>풀만 11/27~11/28, 1박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td class="col-flight-book" style="color:#000;">KE438: 11/25(18:30)-<span class="text-orange-600">11/26(03:50)</span><br>OZ 761: <span class="text-orange-600">11/28</span>(15:40)</td>
+                    <td class="text-teal-700"><span class="text-orange-600">세종 11/26~11/27, 1박</span><br>풀만 11/27~11/28, 1박</td>
+                    <td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
 
                 <tr>
@@ -2107,7 +2106,9 @@
                     <td class="passport">SITI TIAS MIRANTI</td>
                     <td class="title"></td>
                     <td class="note"></td>
-                    <td class="col-flight-book">OZ0762: 11/22(22:30)-11/23(07:40)<br>OZ0761: 11/27(15:40) ~</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td class="col-flight-book" style="color:#000;">OZ 762: 11/22(22:30)-11/23(07:40)<br>OZ 761: 11/27(15:40) ~</td>
+                    <td class="text-teal-700">풀만11/23-11/27, 4박</td>
+                    <td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
                 <tr>
                     <td>5</td>
@@ -2115,7 +2116,9 @@
                     <td class="passport">SRI WIDYA UTAMI</td>
                     <td class="title"></td>
                     <td class="note"></td>
-                    <td class="col-flight-book">OZ0762: 11/22(22:30)-11/23(07:40)<br>OZ0761: 11/27(15:40) ~</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td class="col-flight-book" style="color:#000;">OZ 762: 11/22(22:30)-11/23(07:40)<br>OZ 761: 11/27(15:40) ~</td>
+                    <td class="text-teal-700">풀만11/23-11/27, 4박</td>
+                    <td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
                 <tr>
                     <td>6</td>
@@ -2123,7 +2126,9 @@
                     <td class="passport" style="color: #dc2626;">Not received</td>
                     <td class="title"></td>
                     <td class="note"></td>
-                    <td class="col-flight-book">OZ0762: 11/22(22:30)-11/23(07:40)<br>OZ0761: 11/27(15:40) ~</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td class="col-flight-book">OZ 762: 11/22(22:30)-11/23(07:40)<br>OZ 761: 11/27(15:40) ~</td>
+                    <td class="text-teal-700">풀만11/23-11/27, 4박</td>
+                    <td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
 
                 <tr>
@@ -2133,7 +2138,9 @@
                     <td class="passport">FAJARINA BUDIANTARI</td>
                     <td class="title">Director of Accreditation for inspection and certification bodies</td>
                     <td class="note"></td>
-                    <td class="col-flight-book">OZ0762: 11/22(22:30)-11/23(07:40)<br>OZ0761: 11/27(15:40) ~</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td class="col-flight-book" style="color:#000;">OZ 762: 11/22(22:30)-11/23(07:40)<br>OZ 761: 11/27(15:40) ~</td>
+                    <td class="text-teal-700">풀만11/23-11/27, 4박</td>
+                    <td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
                 <tr>
                     <td>8</td>
@@ -2141,7 +2148,9 @@
                     <td class="passport">KONNY SAGALA</td>
                     <td class="title">Director of Laboratory Accreditation</td>
                     <td class="note"></td>
-                    <td class="col-flight-book">OZ0762: 11/22(22:30)-11/23(07:40)<br>OZ0761: 11/27(15:40) ~</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td class="col-flight-book" style="color:#000;">OZ 762: 11/22(22:30)-11/23(07:40)<br>OZ 761: 11/27(15:40) ~</td>
+                    <td class="text-teal-700">풀만11/23-11/27, 4박</td>
+                    <td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
                 <tr>
                     <td>9</td>
@@ -2149,7 +2158,9 @@
                     <td class="passport">RADEN EWANG KURNIAWAN</td>
                     <td class="title">Staff of Accreditation-BSN</td>
                     <td class="note"></td>
-                    <td class="col-flight-book">OZ0762: 11/22(22:30)-11/23(07:40)<br>OZ0761: 11/27(15:40) ~</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td class="col-flight-book" style="color:#000;">OZ 762: 11/22(22:30)-11/23(07:40)<br>OZ 761: 11/27(15:40) ~</td>
+                    <td class="text-teal-700">풀만11/23-11/27, 4박</td>
+                    <td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
 
                 <tr>
@@ -2159,7 +2170,9 @@
                     <td class="passport">DONG-HYEOK WOO</td>
                     <td class="title">인도네시아 지원장</td>
                     <td class="note"></td>
-                    <td class="col-flight-book">OZ0762: 11/22(22:30)-11/23(07:40)<br>OZ0761: 11/27(15:40) ~</td><td class="text-teal-700">입국 23일~ 출국 27일</td><td class="text-teal-700">풀만11/23-11/27, 4박</td><td class="text-teal-700">기본룸, 조식 포함</td>
+                    <td class="col-flight-book" style="color:#000;">OZ 762: 11/22(22:30)-11/23(07:40)<br>OZ 761: 11/27(15:40) ~</td>
+                    <td class="text-teal-700">풀만11/23-11/27, 4박</td>
+                    <td class="text-teal-700">기본룸, 조식 포함</td>
                 </tr>
 
             </tbody>
