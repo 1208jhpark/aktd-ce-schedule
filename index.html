@@ -873,6 +873,36 @@
         background: #111;
         vertical-align: -0.05em;
     }
+    .block-details > summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        user-select: none;
+    }
+    .block-details > summary::-webkit-details-marker {
+        display: none;
+    }
+    .block-details > summary .block-title {
+        margin: 0;
+    }
+    .block-details[open] > summary .block-title {
+        margin-bottom: 14px;
+    }
+    .block-toggle-hint {
+        font-size: 13px;
+        color: #58708a;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    .block-details[open] .block-toggle-hint::before {
+        content: "▲ 접기";
+    }
+    .block-details:not([open]) .block-toggle-hint::before {
+        content: "▼ 펼치기 (종료된 일정)";
+    }
     .people-table.table-payment {
         min-width: 720px;
         max-width: 900px;
@@ -3356,28 +3386,28 @@
                 </tr>
                 <tr>
                     <td>5</td>
-                    <td class="passport">Won-Seung Yang</td>
+                    <td class="passport">양원승 / Won-Seung Yang</td>
                     <td class="org agency-org">한국생산성본부인증원 / KPCQA</td>
                     <td class="title">센터장 / Manager</td>
                     <td class="note"></td>
                 </tr>
                 <tr>
                     <td>6</td>
-                    <td class="passport">Seong-Bin Jo</td>
+                    <td class="passport">조성빈 / Seong-Bin Jo</td>
                     <td class="org agency-org">한국생산성본부인증원 / KPCQA</td>
                     <td class="title">선임전문위원 / Senior Technical Expert</td>
                     <td class="note"></td>
                 </tr>
                 <tr>
                     <td>7</td>
-                    <td class="passport">Ji-Hye Park</td>
+                    <td class="passport">박지혜 / Ji-Hye Park</td>
                     <td class="org agency-org">한국생산성본부인증원 / KPCQA</td>
                     <td class="title">전문위원 / Technical Expert</td>
                     <td class="note"></td>
                 </tr>
                 <tr>
                     <td>8</td>
-                    <td class="passport">Ye-Ji Lee</td>
+                    <td class="passport">이예지 / Ye-Ji Lee</td>
                     <td class="org agency-org">한국생산성본부인증원 / KPCQA</td>
                     <td class="title">전문위원 / Technical Expert</td>
                     <td class="note"></td>
@@ -3465,10 +3495,14 @@
         </table>
     </section>
 
-    <section class="block">
-        <h2 class="block-title">순환경제 목걸이 명찰 인원 – 인도네시아 참여자 / 순환경제</h2>
-        <p class="block-sub">월요일 일정 시작에 필요</p>
-        <table class="people-table table-header-peach">
+    <section class="block" data-exclude-count="true">
+        <details class="block-details">
+            <summary>
+                <h2 class="block-title">순환경제 목걸이 명찰 인원 – 인도네시아 참여자 / 순환경제</h2>
+                <span class="block-toggle-hint" aria-hidden="true"></span>
+            </summary>
+            <p class="block-sub">월요일 일정 시작에 필요</p>
+            <table class="people-table table-header-peach">
             <colgroup>
                 <col class="col-no" style="width: 4%;">
                 <col class="col-passport" style="width: 28%;">
@@ -3586,12 +3620,17 @@
                 </tr>
             </tbody>
         </table>
+        </details>
     </section>
 
-    <section class="block">
-        <h2 class="block-title">순환경제 발표자 기본명찰 인원 – 인도네시아 참여자 / 순환경제</h2>
-        <p class="block-sub">화요일 세미나에 필요</p>
-        <table class="people-table table-header-lilac">
+    <section class="block" data-exclude-count="true">
+        <details class="block-details">
+            <summary>
+                <h2 class="block-title">순환경제 발표자 기본명찰 인원 – 인도네시아 참여자 / 순환경제</h2>
+                <span class="block-toggle-hint" aria-hidden="true"></span>
+            </summary>
+            <p class="block-sub">화요일 세미나에 필요</p>
+            <table class="people-table table-header-lilac">
             <colgroup>
                 <col class="col-no" style="width: 4%;">
                 <col class="col-passport" style="width: 28%;">
@@ -3688,6 +3727,7 @@
                 </tr>
             </tbody>
         </table>
+        </details>
     </section>
     </div>
 
@@ -3711,11 +3751,11 @@
     badges: { title: '명찰 인원', eyebrow: 'NAME BADGES' }
   };
 
-  /* 명찰 인원 탭: 여러 표에 중복으로 나오는 이름은 한 명으로 계산 */
+  /* 명찰 인원 탭: 여러 표에 중복으로 나오는 이름은 한 명으로 계산 (종료된 순환경제 표 제외) */
   function countUniqueBadgePeople() {
     var seen = {};
     var count = 0;
-    document.querySelectorAll('#view-badges .people-table td.passport').forEach(function (td) {
+    document.querySelectorAll('#view-badges .block:not([data-exclude-count="true"]) .people-table td.passport').forEach(function (td) {
       var key = (td.textContent || '').split('/')[0].trim().toLowerCase();
       if (key && !seen[key]) {
         seen[key] = true;
