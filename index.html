@@ -3526,7 +3526,7 @@
         </table>
     </section>
 
-    <section class="block">
+    <section class="block" data-exclude-count="true">
         <h2 class="block-title">AKTD 2부 소속 명패</h2>
         <table class="people-table table-header-mint">
             <colgroup>
@@ -3840,16 +3840,29 @@
     badges: { title: '명찰 인원', eyebrow: 'NAME BADGES' }
   };
 
-  /* 명찰 인원 탭: 여러 표에 중복으로 나오는 이름은 한 명으로 계산 (종료된 순환경제 표 제외) */
+  /* 명찰 인원 탭: AKTD 명찰 인원 표만 집계. 종료된 일정·2부 소속 명패는 제외. 중복 이름은 1명 */
+  function normalizeBadgeNameKey(text) {
+    var raw = (text || '').replace(/\s+/g, ' ').trim();
+    if (!raw) return '';
+    var primary = raw.split('/')[0].trim().toLowerCase();
+    primary = primary.replace(/^(ms\.|mr\.|mrs\.|dr\.|pr\.)\s+/i, '').trim();
+    return primary;
+  }
   function countUniqueBadgePeople() {
     var seen = {};
     var count = 0;
-    document.querySelectorAll('#view-badges .block:not([data-exclude-count="true"]) .people-table td.passport').forEach(function (td) {
-      var key = (td.textContent || '').split('/')[0].trim().toLowerCase();
-      if (key && !seen[key]) {
-        seen[key] = true;
-        count++;
-      }
+    document.querySelectorAll('#view-badges .block').forEach(function (block) {
+      if (block.getAttribute('data-exclude-count') === 'true') return;
+      var titleEl = block.querySelector('.block-title');
+      var title = titleEl ? (titleEl.textContent || '').trim() : '';
+      if (title.indexOf('AKTD 명찰 인원') !== 0) return;
+      block.querySelectorAll('.people-table td.passport').forEach(function (td) {
+        var key = normalizeBadgeNameKey(td.textContent);
+        if (key && !seen[key]) {
+          seen[key] = true;
+          count++;
+        }
+      });
     });
     return count;
   }
