@@ -3840,16 +3840,9 @@
     badges: { title: '명찰 인원', eyebrow: 'NAME BADGES' }
   };
 
-  /* 명찰 인원 탭: AKTD 명찰 인원 표만 집계. 종료된 일정·2부 소속 명패는 제외. 중복 이름은 1명 */
-  function normalizeBadgeNameKey(text) {
-    var raw = (text || '').replace(/\s+/g, ' ').trim();
-    if (!raw) return '';
-    var primary = raw.split('/')[0].trim().toLowerCase();
-    primary = primary.replace(/^(ms\.|mr\.|mrs\.|dr\.|pr\.)\s+/i, '').trim();
-    return primary;
-  }
+  /* 명찰 인원 탭: AKTD 명찰 인원 표 행 수 합산. 종료된 일정·2부 소속 명패 제외.
+     표가 다르면 같은 이름도 각각 카운트(예: 신종석 한국+녹색연 = 2) */
   function countUniqueBadgePeople() {
-    var seen = {};
     var count = 0;
     document.querySelectorAll('#view-badges .block').forEach(function (block) {
       if (block.getAttribute('data-exclude-count') === 'true') return;
@@ -3857,11 +3850,8 @@
       var title = titleEl ? (titleEl.textContent || '').trim() : '';
       if (title.indexOf('AKTD 명찰 인원') !== 0) return;
       block.querySelectorAll('.people-table td.passport').forEach(function (td) {
-        var key = normalizeBadgeNameKey(td.textContent);
-        if (key && !seen[key]) {
-          seen[key] = true;
-          count++;
-        }
+        var name = (td.textContent || '').replace(/\s+/g, ' ').trim();
+        if (name) count++;
       });
     });
     return count;
