@@ -1235,6 +1235,9 @@
         font-size: 13.5px;
         margin: 0;
     }
+    .people-table tbody tr.badge-dup td {
+        color: #94a3b8 !important;
+    }
     .sign-click {
         display: inline-flex;
         align-items: center;
@@ -3306,12 +3309,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="badge-dup" data-exclude-count="true">
                     <td>1</td>
                     <td class="passport">신종석/Jongseok Shin</td>
                     <td class="org agency-org">국가녹색기술연구소/National Institute of Green Technology</td>
                     <td class="title">센터장(선임연구원) / Director of Global Strategy Center</td>
-                    <td class="note"></td>
+                    <td class="note">AKTD 행사 참여자/한국 중복</td>
                 </tr>
                 <tr>
                     <td>2</td>
@@ -3840,8 +3843,8 @@
     badges: { title: '명찰 인원', eyebrow: 'NAME BADGES' }
   };
 
-  /* 명찰 인원 탭: AKTD 명찰 인원 표 행 수 합산. 종료된 일정·2부 소속 명패 제외.
-     표가 다르면 같은 이름도 각각 카운트(예: 신종석 한국+녹색연 = 2) */
+  /* 명찰 인원 탭: AKTD 명찰 인원 표 행 수 합산.
+     종료된 일정·2부 소속 명패·중복 표시 행(data-exclude-count)은 제외 */
   function countUniqueBadgePeople() {
     var count = 0;
     document.querySelectorAll('#view-badges .block').forEach(function (block) {
@@ -3849,7 +3852,10 @@
       var titleEl = block.querySelector('.block-title');
       var title = titleEl ? (titleEl.textContent || '').trim() : '';
       if (title.indexOf('AKTD 명찰 인원') !== 0) return;
-      block.querySelectorAll('.people-table td.passport').forEach(function (td) {
+      block.querySelectorAll('.people-table tbody tr').forEach(function (tr) {
+        if (tr.getAttribute('data-exclude-count') === 'true') return;
+        var td = tr.querySelector('td.passport');
+        if (!td) return;
         var name = (td.textContent || '').replace(/\s+/g, ' ').trim();
         if (name) count++;
       });
